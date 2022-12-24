@@ -5,10 +5,40 @@
 </head>
 <body>
     <h1>Create an object calculator with three methods: read(), sum() and mul()</h1>
+    <div>
+        <label for="input_a">enter a number</label>
+        <input type="number" value=0 name="input_a" id="input_a" onchange="updateNumber('a')">
+        <label for="input_b">enter another number</label>
+        <input type="number" value=0 name="input_b" id="input_b" onchange="updateNumber('b')">
+    </div>
+    <div id="input_number">input number : </div>
+    <div id="sum">the sum of them : </div>
+    <div id="multiply">the product of multiplication : </div>
     <script>
-
-        // ...Your code...
-      
+        let calculator = {
+            value_a: 0,
+            value_b: 0,
+            read(){
+                document.querySelector("#input_number").innerHTML = `input number : ${this.value_a || 0},${this.value_b || 0}`
+            },
+            sum(){
+                const sumValue = +this.value_a + +this.value_b
+                document.querySelector("#sum").innerHTML = `the sum of them : ${sumValue || 0}`
+            },
+            mul(){
+                const mulValue = +this.value_a * +this.value_b
+                document.querySelector("#multiply").innerHTML = `the product of multiplication : ${mulValue || 0}`
+            }
+        };
+        function updateNumber(position){
+            calculator[`value_${position}`] = document.querySelector(`#input_${position}`).value;
+            calculator.read()
+            calculator.sum()
+            calculator.mul()
+        }
+        calculator.read()
+        calculator.sum()
+        calculator.mul()
     </script>
 </body>
 </html>
